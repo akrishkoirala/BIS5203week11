@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biratnagar, Nepal</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f9;}
+    header {background: #2c3e50; color: #fff; padding: 20px; text-align: center;}
+    .tabs {display: flex; background: #34495e;}
+    .tabs button {flex: 1; padding: 14px; background: #34495e; color: white; border: none; cursor: pointer;}
+    .tabs button.active {background: #1abc9c;}
+    .panel {display: none; padding: 20px; background: #fff;}
+    .accordion button {background: #eee; cursor: pointer; padding: 14px; width: 100%; border: none; text-align: left; outline: none;}
+    .accordion div {display: none; padding: 10px; background: #fafafa;}
+    dialog {border: none; border-radius: 8px; padding: 20px;}
+    footer {background: #2c3e50; color: #fff; text-align: center; padding: 10px; margin-top: 20px;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Biratnagar, Nepal</h1>
+    <p>The industrial and cultural hub of Eastern Nepal</p>
+    <button id="openDialog">Learn More</button>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-target="home">Home</button>
+    <button class="tab" data-target="attractions">Attractions</button>
+    <button class="tab" data-target="food">Food</button>
+    <button class="tab" data-target="transport">Transport</button>
+  </div>
+
+  <div id="home" class="panel" style="display:block;">
+    <h2>About Biratnagar</h2>
+    <p>Biratnagar is Nepal’s second-largest city and a major industrial hub. Located near the Indian border, it is known for its vibrant culture, bustling markets, and diverse communities.</p>
+  </div>
+
+  <div id="attractions" class="panel">
+    <h2>Attractions</h2>
+    <div class="accordion">
+      <button>Mangala Devi Temple</button>
+      <div><p>An important religious site attracting many pilgrims.</p></div>
+      <button>Biratnagar Haat Bazaar</button>
+      <div><p>A lively market with local goods, textiles, and street food.</p></div>
+      <button>Rangeli</button>
+      <div><p>A nearby historic town with cultural and historical significance.</p></div>
+    </div>
+  </div>
+
+  <div id="food" class="panel">
+    <h2>Food in Biratnagar</h2>
+    <p>Biratnagar offers a variety of cuisines from traditional Nepali dishes like momo and dal-bhat to Indian-inspired street food like samosas and chaat.</p>
+  </div>
+
+  <div id="transport" class="panel">
+    <h2>Transport</h2>
+    <p>Biratnagar is well connected by road and air. Rickshaws, buses, and taxis are the main forms of local transport, and Biratnagar Airport connects the city to Kathmandu.</p>
+  </div>
+
+  <dialog id="infoDialog">
+    <h2>Biratnagar, Nepal</h2>
+    <p>Did you know? Biratnagar is the birthplace of several of Nepal’s political leaders and has played a major role in the country’s history.</p>
+    <button id="closeDialog">Close</button>
+  </dialog>
+
+  <footer>
+    <p>&copy; 2025 Biratnagar Info Page</p>
+  </footer>
+
+  <script>
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.style.display = 'none');
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).style.display = 'block';
+      });
+    });
+
+    // Accordion
+    const accButtons = document.querySelectorAll('.accordion button');
+    accButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const panel = btn.nextElementSibling;
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Dialog
+    const dialog = document.getElementById('infoDialog');
+    document.getElementById('openDialog').addEventListener('click', () => dialog.showModal());
+    document.getElementById('closeDialog').addEventListener('click', () => dialog.close());
+  </script>
+</body>
+</html>
